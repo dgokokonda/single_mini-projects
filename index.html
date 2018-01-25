@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Carousel</title>
+    <link rel="stylesheet"
+        href="font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+    <style>
+        #input {
+            display: block;
+            margin: auto;
+            margin-top: 50px;
+            width: 250px;
+            height: 25px;
+            border-radius: 6px;
+            border: 2px solid #cbf1f1;
+            outline: 0;
+            padding-left: 10px;
+        }
+
+        #input:focus {
+            border: 2px solid #00c4c4;
+        }
+
+        .form_hint {
+            visibility: hidden;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
+            font-size: 14px;
+            background: #faafd5;
+            opacity: .5;
+            width: 310px;
+            height: 20px;
+            text-align: center;
+            border-radius: 12px;
+            color: white;
+            padding: 5px 7px 2px;
+            z-index: 666;
+        }
+
+        .form_hint::before {
+            content: '\23F6';
+            color: #faafd5;
+            position: absolute;
+            top: -10px;
+            left: 155px;
+        }
+
+        #container {
+            margin: auto;
+            padding: 30px;
+            position: relative;
+            margin-top: 20px;
+            height: 222px;
+            width: 90%;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+
+        #carousel {
+            margin: 0;
+            padding: 0;
+            width: max-content;
+            /*width: 99999px;*/
+            transition: margin-left 250ms;
+        }
+
+        .item {
+            display: flex;
+            margin: 10px;
+            float: left;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+
+        }
+
+        .fa {
+            cursor: pointer;
+            z-index: 777;
+            position: absolute;
+            top: 41%;
+            color: #00c4c4;
+            visibility: hidden;
+        }
+
+        .fa:hover {
+            opacity: .7;
+        }
+
+        .fa-chevron-left {
+            left: 15px;
+        }
+
+        .fa-chevron-right {
+            right: 15px;
+        }
+    </style>
+    <input type="text"
+        onkeydown="checkValue()"
+        id="input"
+        placeholder="Введите количество ячеек в карусели">
+    <div class="form_hint">Введите только целое положительное число ячеек!</div>
+    <div id="container"
+        onselectstart='return false'>
+        <i class="fa fa-chevron-left fa-3x"
+            aria-hidden="true"></i>
+        <div id="carousel"></div>
+        <i class="fa fa-chevron-right fa-3x"
+            aria-hidden="true"></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
