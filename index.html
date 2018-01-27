@@ -103,6 +103,14 @@
         .fa-chevron-right {
             right: 15px;
         }
+
+        .circle {
+            fill: white;
+            stroke: #100;
+            stroke-miterlimit: 10;
+            stroke-width: 3px;
+            z-index: 888;
+        }
     </style>
     <input type="text"
         onkeydown="checkValue()"
@@ -117,8 +125,23 @@
         <i class="fa fa-chevron-right fa-3x"
             aria-hidden="true"></i>
     </div>
+    <svg id="bubbles-footer"
+        class="c-bubbles"
+        viewBox="0 0 1920 1920"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <circle class='circle'
+            cx="257"
+            cy="44.0122"
+            r="14"></circle>
+        <circle class='circle'
+            cx="300"
+            cy="120"
+            r="34"></circle>
 
+    </svg>
     <script src="script.js"></script>
+
 </body>
 
 </html>
