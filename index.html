@@ -64,6 +64,7 @@
         }
 
         #carousel {
+            position: relative;
             margin: 0;
             padding: 0;
             /*width: max-content;*/
@@ -119,15 +120,15 @@
     <div class="form_hint">Введите только целое положительное число ячеек!</div>
     <div id="container"
         onselectstart='return false'>
-        <i class="fa fa-chevron-left fa-3x"
+        <i id="left" onclick="scrollLength()" class="fa fa-chevron-left fa-3x"
             aria-hidden="true"></i>
         <div id="carousel"></div>
-        <i class="fa fa-chevron-right fa-3x"
+        <i id="right" onclick="scrollLength()" class="fa fa-chevron-right fa-3x"
             aria-hidden="true"></i>
     </div>
-    <svg id="bubbles-footer"
+    <svg id="bubbles-footer" width='100%'
         class="c-bubbles"
-        viewBox="0 0 1920 1920"
+        viewBox="0 0 1920 400"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
         <circle class='circle'
