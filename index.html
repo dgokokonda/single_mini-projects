@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Random running</title>
+</head>
+
+<body>
+    <style>
+        body {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+
+        #box {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            -webkit-transition: all 1s;
+            -moz-transition: all 1s;
+            -o-transition: all 1s;
+            -ms-transition: all 1s;
+            transition: all 1s;
+            z-index: 1000;
+        }
+
+        #ball {
+            position: relative;
+            margin: auto;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            z-index: 9;
+        }
+    </style>
+
+    <div id="box" onmouseover="randomMove()">
+        <img src="https://js.cx/clipart/ball.svg" id="ball">
+    </div>
+
+    <script>
+        'use strict'
+        var container = document.body;
+        var box = document.getElementById('box');
+        var ball = document.getElementById('ball');
+        ball.style.left = box.clientWidth / 2 - ball.clientWidth / 2 + 'px';
+        ball.style.top = box.clientHeight / 2 - ball.clientHeight / 2 + 'px';
+        box.style.top = container.clientHeight / 2 - ball.clientHeight / 2 + 'px';
+        box.style.left = container.clientWidth / 2 - ball.clientWidth / 2 + 'px';
+
+        container.onclick = function (e) {
+            var coords = container.getBoundingClientRect();
+            var innerCoords = {
+                left: coords.left + container.clientLeft,
+                top: coords.top + container.clientTop
+            }
+            var boxCoords = {
+                left: e.clientX - innerCoords.left - box.clientWidth / 2,
+                top: e.clientY - innerCoords.top - box.clientHeight / 2
+            }
+            if (boxCoords.top < 0) boxCoords.top = 0;
+            if (boxCoords.left < 0) boxCoords.left = 0;
+            if (boxCoords.left + box.clientWidth > container.clientWidth) {
+                boxCoords.left = container.clientWidth - box.clientWidth;
+            }
+            if (boxCoords.top + box.clientHeight > container.clientHeight) {
+                boxCoords.top = container.clientHeight - box.clientHeight;
+            }
+            box.style.left = boxCoords.left + 'px';
+            box.style.top = boxCoords.top + 'px';
+            ball.style.left = box.clientWidth / 2 - ball.clientWidth / 2 + 'px';
+            ball.style.top = box.clientHeight / 2 - ball.clientHeight / 2 + 'px';
+        }
+        function getRandom(a, b) {
+            return a + Math.floor(Math.random() * (b - a + 1));
+        }
+        function randomMove(e) {
+            var x = getRandom(0, container.clientWidth);
+            var y = getRandom(0, container.clientHeight);
+            var coords = container.getBoundingClientRect();
+            var innerCoords = {
+                left: coords.left + container.clientLeft,
+                top: coords.top + container.clientTop
+            }
+            var boxCoords = {
+                left: x - innerCoords.left - box.clientWidth / 2,
+                top: y - innerCoords.top - box.clientHeight / 2
+            }
+            if (ball.focus || box.focus) {
+                if (boxCoords.top < 0) boxCoords.top = 0;
+                if (boxCoords.left < 0) boxCoords.left = 0;
+                if (boxCoords.left + box.clientWidth > container.clientWidth) {
+                    boxCoords.left = container.clientWidth - box.clientWidth;
+                }
+                if (boxCoords.top + box.clientHeight > container.clientHeight) {
+                    boxCoords.top = container.clientHeight - box.clientHeight;
+                }
+                box.style.left = boxCoords.left + 'px';
+                box.style.top = boxCoords.top + 'px';
+                ball.style.left = box.clientWidth / 2 - ball.clientWidth / 2 + 'px';
+                ball.style.top = box.clientHeight / 2 - ball.clientHeight / 2 + 'px';
+            }
+        }
+    </script>
+</body>
+
+</html>
