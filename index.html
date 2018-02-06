@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wiki Search API</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: #b7d6fa;
+        }
+
+
+
+        h1 {
+            text-align: center;
+            font-family: cursive;
+            color: whitesmoke;
+            font-size: 36px;
+        }
+
+        *::-moz-selection {
+            background: #66b5ffcc;
+        }
+
+        *::-webkit-selection {
+            background: #66b5ffcc;
+        }
+
+        *::selection {
+            background: #66b5ffcc;
+        }
+
+        #search {
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            margin: 30px;
+            position: relative;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            padding-left: 10px;
+            height: 32px;
+            width: 250px;
+            border-radius: 13px;
+            background: #aac7ff;
+            border: 2px solid #6d6dec;
+            outline: 0;
+            cursor: pointer;
+            color: #2676c0;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #95b8fd;
+        }
+
+        button:active {
+            background: #709fff;
+        }
+
+        input {
+            padding-left: 10px;
+            height: 25px;
+            width: 250px;
+            border-radius: 12px;
+            border: 2px solid #6d6dec;
+            outline: 0;
+            background: #aac7ff;
+            color: #2676c0;
+            font-weight: 600;
+        }
+
+        input::placeholder {
+            color: #e3eafc;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .results {
+            margin: auto;
+            width: 80%;
+        }
+
+        li {
+            margin: 10px;
+            list-style: none;
+            background-color: #d4e6fa;
+            border-radius: 8px;
+        }
+
+        li a {
+            color: #0f69bd;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        h2,
+        p {
+            margin: 0;
+            padding: 5px;
+        }
+    </style>
+    <h1>Here's a Wikipedia Viewer</h1>
+    <div id="search">
+
+        <a href="https://en.wikipedia.org/wiki/Special:Random">
+            <button id="random">Click here for a random Wiki article</button>
+        </a>
+        <br>
+        <input id='input' type="text" value="Richard Feynman" placeholder="Search any Wiki article here">
+    </div>
+    <div class="results">
+        <ul id="output">
+        </ul>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
