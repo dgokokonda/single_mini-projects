@@ -11,10 +11,10 @@ var input = document.getElementById('input'),
   elemsWidth,
   scroll = 0;
 
-function checkValue() {
-  if (input.value && event.keyCode === 13) {
+function checkValue(e) {
+  if (input.value !== '' && e.keyCode === 13) {
     for (var i = 0; i < input.value.length; i++) {
-      if (input.value.charCodeAt(i) < 49 || input.value.charCodeAt(i) > 57) {
+      if (input.value.charCodeAt(i) < 48 || input.value.charCodeAt(i) > 57) {
         hint.style.visibility = 'visible';
         left.style.visibility = 'hidden';
         right.style.visibility = 'hidden';
@@ -27,17 +27,19 @@ function checkValue() {
     removeItems();
     carousel.style.marginLeft = '0px';
     position = 0;
-    pushItems();
+    pushItems(e);
+    scrollLength(e);
     container.onwheel = wheel;
 
-  } else if (!input.value && event.keyCode === 13) {
+
+  } else if (!input.value && e.keyCode === 13) {
     hint.style.visibility = 'visible';
     left.style.visibility = 'hidden';
     right.style.visibility = 'hidden';
   }
 }
 
-function pushItems() {
+function pushItems(e) {
   var amount = +input.value;
   for (var j = 0; j < amount; j++) {
     var item = document.createElement('div');
@@ -45,7 +47,6 @@ function pushItems() {
     item.className = 'item';
     carousel.appendChild(item);
   }
-  scrollLength();
 }
 
 function removeItems() {
@@ -58,6 +59,7 @@ function scrollLength(e) {
   var elem = document.querySelectorAll('.item');
   containerWidth = container.offsetLeft + container.offsetWidth;
   elemsWidth = elem[elem.length - 1].offsetLeft + elem[elem.length - 1].offsetWidth;
+
   if (containerWidth > elemsWidth) {
     left.style.opacity = '.5';
     right.style.opacity = '.5';
@@ -69,12 +71,15 @@ function scrollLength(e) {
     left.style.opacity = '.5';
     right.style.opacity = '1';
 
-    if (event.target.id === 'right' || e === 100) {
+    if (e.target.id === 'right' || e.deltaY === 100 || e.deltaY === 3) {
       if (containerWidth < elemsWidth) {
         position = Math.max(position - width * count, -width * (elem.length - count));
       }
       carousel.style.marginLeft = position + 'px';
-      if (position === -width * (elem.length - count) || position === -width * (elem.length - count - 1) || position === -width * (elem.length - count - 2)) {
+
+      if (position === -width * (elem.length - count)
+        || position === -width * (elem.length - count - 1)
+        || position === -width * (elem.length - count - 2)) {
         left.style.opacity = '1';
         right.style.opacity = '.5';
         right.onclick = null;
@@ -84,7 +89,7 @@ function scrollLength(e) {
       }
     }
 
-    if (event.target.id === 'left' || e === -100) {
+    if (e.target.id === 'left' || e.deltaY === -100 || e.deltaY === -3) {
       right.onclick = scrollLength;
       position = Math.min(position + width * count, 0);
       carousel.style.marginLeft = position + 'px';
@@ -100,13 +105,16 @@ function scrollLength(e) {
   }
 }
 
-function wheel() {
+function wheel(e) {
   if (containerWidth > elemsWidth) return;
-  else if (event.deltaY > 100 || event.deltaY < -100) return;
-  else if (event.deltaY > 0 && elemsWidth > containerWidth) scroll += 200;
-  else if (event.deltaY < 0 && position >= 0) scroll -= 200;
+  else if (e.deltaY === 3 || e.deltaY === 100 && elemsWidth > containerWidth) scroll += 200;
+  else if (e.deltaY === -3 || e.deltaY === -100) {
+    if (position >= 0) {
+      scroll -= 200;
+    }
+  } else return;
   carousel.style.marginLeft = scroll + 'px';
-  scrollLength(event.deltaY);
+  scrollLength(e);
 }
 
 var svgNS = 'http://www.w3.org/2000/svg',
@@ -118,6 +126,7 @@ function createCircles() {
   for (var c = 1; c <= 280; c++) {
     store.push(c);
   }
+
   store.forEach(function (e) {
     var radius = getRandom(6, 32);
     var x = getRandom(50, screenWidth + 450);
@@ -141,6 +150,7 @@ var circle = document.querySelectorAll('circle');
 function circleHover(circle) {
   circle.setAttribute('style', 'fill:' + colors[Math.floor(Math.random() * colors.length)]);
 }
+
 function changeColor() {
   for (var i = 0; i < circle.length; i++) {
     circle[i].addEventListener('mouseover', function () {
