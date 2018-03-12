@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Carousel</title>
-    <link rel="stylesheet"
-        href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -113,32 +112,16 @@
             z-index: 888;
         }
     </style>
-    <input type="text"
-        onkeydown="checkValue()"
-        id="input"
-        placeholder="Введите количество ячеек в карусели">
+    <input type="text" onkeydown="checkValue(event)" id="input" placeholder="Введите количество ячеек в карусели">
     <div class="form_hint">Введите только целое положительное число ячеек!</div>
-    <div id="container"
-        onselectstart='return false'>
-        <i id="left" onclick="scrollLength()" class="fa fa-chevron-left fa-3x"
-            aria-hidden="true"></i>
+    <div id="container" onselectstart='return false'>
+        <i id="left" class="fa fa-chevron-left fa-3x" aria-hidden="true"></i>
         <div id="carousel"></div>
-        <i id="right" onclick="scrollLength()" class="fa fa-chevron-right fa-3x"
-            aria-hidden="true"></i>
+        <i id="right" class="fa fa-chevron-right fa-3x" aria-hidden="true"></i>
     </div>
-    <svg id="bubbles-footer" width='100%'
-        class="c-bubbles"
-        viewBox="0 0 1920 400"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <circle class='circle'
-            cx="257"
-            cy="44.0122"
-            r="14"></circle>
-        <circle class='circle'
-            cx="300"
-            cy="120"
-            r="34"></circle>
+    <svg id="bubbles-footer" width='100%' class="c-bubbles" viewBox="0 0 1920 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <circle class='circle' cx="257" cy="44.0122" r="14"></circle>
+        <circle class='circle' cx="300" cy="120" r="34"></circle>
 
     </svg>
     <script src="script.js"></script>
