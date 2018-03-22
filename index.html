@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="board-header">
+            <a class="board-header-btn title1" href="#">
+                <span class="board-header-name"></span>
+            </a>
+            <a class="board-header-btn title2" href="#">
+                <span class="btn-header-menu">Show Menu</span>
+            </a>
+        </div>
+        <div class="board-canvas">
+            <div class="board-scroll-area">
+                <div id="add-list-wrapper">
+                    <form class="form">
+                        <span class="open-add-list" onclick="showAddListForm()">Add a list...</span>
+                        <input class="add-list-input" onkeydown="saveListName(event)" type="text" placeholder="Add a list...">
+                        <div class="add-list-btns">
+                            <input class="save" onclick="saveListName(event)" type="submit" value="Save">
+                            <a class="close" href="#" onclick="closeListForm()"></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="window-overlay">
+        <div class="window">
+            <a href="#" class="close close-window"></a>
+            <div class="window-wrapper">
+                <div class="window-header">
+                    <div class="window-title">
+                        <span class="icon"></span>
+                        <h2 class='window-task-name'></h2>
+                    </div>
+                    <span class="window-list">in list
+                        <u class="window-list-name"></u>
+                    </span>
+                </div>
+                <div class="window-comments">
+                    <textarea class="comment" placeholder="Add a more detailed description..."></textarea>
+                    <div class="window-btns">
+                        <input class="save copy-btn" type="submit" value="Save">
+                        <a href="#" class="close clear-textarea" onclick="clearText()"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="window-activity">
+                <h3>Actions</h3>
+                <div class="actions">
+                    <a href="#" class="action move">Move</a>
+                    <a href="#" class="action copy">Copy</a>
+                    <a href="#" class="action delete">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="open-popup-window">
+        <div class="popup-header">
+            <span class="popup-title"></span>
+            <a class="close close-popup" href="#"></a>
+            <a class="back-btn" href="#"></a>
+        </div>
+        <div class="popup-content"></div>
+    </div>
+    <div class="board-menu">
+        <div class="menu-header">
+            <span class="menu-title">Menu</span>
+            <a class="close close-menu" href="#"></a>
+        </div>
+        <div class="menu-wrapper">
+            <div class="menu-content">
+                <a href="#" class="activity-title">
+                    <span class="activity-label">Activity</span>
+                </a>
+                <div class="menu-action-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="DragManager.js"></script>
+    <script>
+        'use strict'
+        DragManager.onDragCancel = function (dragObject) {
+            dragObject.avatar.rollback();
+        };
+
+        DragManager.onDragEnd = function (dragObject, origin) {
+            dragObject.elem.style.display = 'none';
+            var thisElem = document.elementFromPoint(event.pageX, event.pageY);// current list
+            var currentElem = thisElem.closest('.list-wrapper'); // current list-wrapper
+
+            if (thisElem.className === 'list-card') {
+                var originListId = origin.closest('.list-wrapper').id; // id of origin list
+                var draggablePos = storage[originListId].tasks[origin.id].position;
+                var droppablePos = storage[currentElem.id].tasks[thisElem.id].position;
+                if (draggablePos > droppablePos) {
+                    moveDraggableElem(thisElem, currentElem.id, originListId, droppablePos, 'card');
+                } else if (draggablePos < droppablePos) {
+                    moveDraggableElem(thisElem.nextElementSibling, currentElem.id, originListId, droppablePos, 'card');
+                } else dragObject.avatar.rollback();
+
+                return;
+            }
+            else if (!currentElem) {
+                dragObject.avatar.rollback();
+            } else {
+                var draggablePos = storage[origin.id].position;
+                var droppablePos = storage[currentElem.id].position;
+                if (draggablePos > droppablePos) {
+                    moveDraggableElem(currentElem, currentElem.id, null, droppablePos, 'list');
+                } else if (draggablePos < droppablePos) {
+                    moveDraggableElem(currentElem.nextElementSibling, currentElem.id, null, droppablePos, 'list');
+                } else dragObject.avatar.rollback();
+            }
+        };
+    </script>
+    <script>
+        'use strict'
+        var textarea = document.querySelector('.comment');
+        var btn = document.querySelector('.clear-textarea');
+        var menuBtn = document.querySelector('.btn-header-menu');
+        var menu = document.querySelector('.board-menu');
+        var closeMenuBtn = document.querySelector('.close-menu');
+
+        function showAddListForm() {
+            document.querySelector('.open-add-list').style.display = 'none';
+            document.querySelector('form').style.background = 'skyblue';
+            document.querySelector('form').style.padding = '3px';
+            document.querySelector('.add-list-input').style.display = 'block';
+            document.querySelector('.add-list-btns').style.display = 'block';
+        }
+
+        function closeListForm() {
+            document.querySelector('.open-add-list').style.display = '';
+            document.querySelector('form').style.background = 'none';
+            document.querySelector('form').style.padding = '0';
+            document.querySelector('.add-list-input').style.display = '';
+            document.querySelector('.add-list-btns').style.display = '';
+            document.querySelector('.add-list-input').value = '';
+        }
+
+        textarea.addEventListener('input', function (e) {
+            if (this.value != '') {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        function clearText() {
+            document.querySelector('.comment').value = '';
+            btn.classList.remove('active');
+        }
+
+        //to display the Show Menu
+        menuBtn.addEventListener('click', function () {
+            menu.style.display = 'block';
+            localStorage.setItem('menu-display', 'block');
+            menu.animate([
+                { transform: 'translateX(350px)' },
+                { transform: 'translateX(0)' }
+            ], {
+                    easing: 'linear',
+                    duration: 250
+                });
+            menu.style.transform = 'translateX(0)';
+        });
+
+        //to hide the Show Menu
+        closeMenuBtn.addEventListener('click', function () {
+            menu.animate([
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(350px)' }
+            ], {
+                    easing: 'linear',
+                    duration: 350
+                });
+            menu.style.transform = 'translateX(350px)';
+
+            setTimeout(() => {
+                menu.style.display = 'none';
+                localStorage.setItem('menu-display', 'none');
+            }, 350);
+        });
+    </script>
+
+</body>
+
+</html>
