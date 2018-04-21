@@ -1,0 +1,55 @@
+@textColor: #4682b4;
+
+.side-bar-info {
+    margin-bottom: 1.875rem;
+}
+.side-bar-head {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1.875rem;
+    border-bottom: 5px solid @textColor;
+}
+.side-bar-title--question {
+    border-bottom: 5px solid @textColor;
+    &::before {
+       content: '\2753';
+    padding: 0.3125rem 0.3125rem 0.25rem 0.3125rem; 
+    }
+}
+.side-bar-title--exclamation {
+    display: flex;
+    height: 100%;
+    &::before {
+        content: '\2757';
+    padding: 0.3125rem 0.6875rem 0.25rem 0.6875rem;
+    }
+}
+.side-bar-title {
+    color: @textColor;
+    margin: 0;
+    &::before {
+        background-color: @textColor;
+        color: white;
+        margin-right: 0.625rem;
+    }
+}
+.side-bar-desc {
+    margin-top: 1.125rem;
+}
+.keywords {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.keywords__item {
+    margin-bottom: 0.3125rem;
+    background-color: @textColor;
+    color: white;
+    padding: 0 0.625rem 0.065rem 0.625rem;
+    margin-right: 2.3125rem;
+    cursor: pointer;
+    &::after{
+        content: url(../svg/tag.svg);
+        position: absolute;
+    }
+}
