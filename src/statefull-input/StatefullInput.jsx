@@ -29,7 +29,6 @@ export class StatefullInput extends Component {
             e.target.value = this.state.newTodo = '';
             this.refreshCount();
         }
-        
     }
 
     deleteTodo = (i) => {
@@ -43,8 +42,8 @@ export class StatefullInput extends Component {
         });
         this.refreshCount();
     }
-    selectTodo = (id) => {
 
+    selectTodo = (id) => {
         this.setState({
             items: this.state.items.map((todo) =>
                 (todo.id === id) ? ({...todo, status: todo.status === 'active' ? 'done' : 'active'}) : ({...todo})
@@ -55,6 +54,7 @@ export class StatefullInput extends Component {
         });
         this.refreshCount();
     }
+
     selectAll = (e) => {
         e = e || window.event;
         let status = e.target.checked === true ? 'done' : 'active';
@@ -75,8 +75,15 @@ export class StatefullInput extends Component {
     editTodo = (e, id) => {
         e = e || window.event;
         var charCode = e.charCode || e.keyCode;
-        
+
         if (charCode === 13 && e.target.value) {
+            this.setNewValue.call(this, e, id);
+        }
+    }
+    setNewValue = (e, id) => {
+        e = e || window.event;
+
+        if (e.target.value && e.target.onFocus !== true) {
             this.setState({
                 items: this.state.items.map((todo) =>
                     todo.id === id ? ({...todo, name: e.target.value}) : ({...todo})
@@ -86,8 +93,7 @@ export class StatefullInput extends Component {
             function() {
                 this.setStorage();
             });
-            // клик вне инпута - кидаун на др.эл-ты, с проверкой на опасити и значение
-            // иконка редактировать
+
             e.target.value = ''
         }
     }
@@ -125,7 +131,6 @@ export class StatefullInput extends Component {
     }
 
     render() {
-        // const {items, itemID} = this.props;
         const {items, itemID, newTodo, count, itemsLeft, opacity, display} = this.state;
 
         return (
@@ -148,6 +153,7 @@ export class StatefullInput extends Component {
                                     displayForm={this.displayForm}
                                     editTodo={this.editTodo}
                                     display={this.state.display}
+                                    setNewValue={this.setNewValue}
                                 />
                     })}
                 </div>

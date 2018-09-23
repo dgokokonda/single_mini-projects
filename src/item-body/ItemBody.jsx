@@ -19,7 +19,8 @@ export class ItemBody extends Component {
             opacity,
             displayForm,
             display,
-            refreshStatus
+            refreshStatus,
+            setNewValue
         } = this.props;
 
         const visible = (display === 'all') || (display === 'active' && status === 'active') || (display === 'done' && status === 'done');
@@ -29,7 +30,7 @@ export class ItemBody extends Component {
             <div className="item" id={id} style={visible ? {display: 'block'} : {display: 'none'}}>
                 <input type="checkbox" className="check" onChange={() => {}} checked={status==='done' ? true : ''}/>
                 <label onClick={() => selectTodo(id)}>{name}</label>
-                <input type="text" className={opacity === id ? 'editTodo editable' : 'editTodo'} onDoubleClick={() => displayForm(id)} onKeyDown={(event) => editTodo(event, id)}/>
+                <input type="text" className={opacity === id ? 'editTodo editable' : 'editTodo'} onBlur={opacity === id ? (event) => setNewValue(event, id) : null} onDoubleClick={() => displayForm(id)} onKeyDown={(event) => editTodo(event, id)}/>
                 <button className="delete" onClick={() => deleteTodo(id)}>
                     <i className="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
