@@ -4,7 +4,7 @@
   border-bottom: 1.5px solid #f5f5f5;
 }
 
-.item:hover .delete {
+.item:hover .icon {
   visibility: visible;
   outline: 0;
   border: none;
@@ -12,12 +12,12 @@
   color: #dfdfdf;
 }
 
-.delete {
+.icon {
   margin-left: 13px;
   visibility: hidden;
 }
 
-.delete:hover {
+.icon:hover {
   cursor: pointer;
   color: #cacaca;
   font-size: 18px;
@@ -29,7 +29,7 @@ label {
   position: relative;
   padding-left: 40px;
   font-size: x-large;
-  width: 93%;
+  width: 87%;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -82,7 +82,7 @@ label:before {
   opacity: 0;
   height: 25px;
   top: 11px;
-  width: 86%;
+  width: 80%;
   -webkit-box-shadow: 0 0 0 1px lightblue;
   box-shadow: 0 0 0 1px lightblue;
   -webkit-border-radius: 4px;

@@ -83,7 +83,7 @@ export class StatefullInput extends Component {
     setNewValue = (e, id) => {
         e = e || window.event;
 
-        if (e.target.value && e.target.onFocus !== true) {
+        if (e.target.value) {
             this.setState({
                 items: this.state.items.map((todo) =>
                     todo.id === id ? ({...todo, name: e.target.value}) : ({...todo})
@@ -95,7 +95,7 @@ export class StatefullInput extends Component {
             });
 
             e.target.value = ''
-        }
+        } else this.setState({ opacity: 0 });
     }
     setAll = () => {
         this.setState({display: 'all'})
