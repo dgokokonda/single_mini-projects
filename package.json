@@ -1,0 +1,41 @@
+{
+    "name": "citybank-test",
+    "version": "1.0.0",
+    "description": "start gulp",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Batrakova V.B.",
+    "license": "ISC",
+    "browserslist": [
+        "> 22%",
+        "ie >= 11",
+        "edge >= 15",
+        "ie_mob >= 10",
+        "ff >= 51",
+        "chrome >= 56",
+        "safari >= 7",
+        "opera >= 23",
+        "ios >= 7",
+        "android >= 4",
+        "bb >= 10"
+    ],
+    "files": [
+        "dist"
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.6.4",
+        "@babel/preset-env": "^7.6.3",
+        "browser-sync": "^2.26.5",
+        "del": "^5.0.0",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^6.1.0",
+        "gulp-babel": "^8.0.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-rename": "^1.4.0",
+        "gulp-sass": "^4.0.2",
+        "gulp-uglify": "^3.0.2"
+    },
+    "dependencies": {}
+}

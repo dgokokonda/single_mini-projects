@@ -1,0 +1,208 @@
+.cards
+    margin: 74px 0
+    @media screen and (max-width: 1200px)
+        padding: 0 10px
+    @media screen and (max-width: 950px)
+        margin: 20px 0
+
+    &__block
+        display: inline-block
+        width: 100%
+        position: relative
+        height: 151px
+        &:not(:last-child)
+            margin-bottom: 24px
+        @media screen and (max-width: 750px)
+            height: auto
+            float: left
+            &:not(:last-child)
+                margin-bottom: 0
+
+    .card
+        float: left
+        overflow: hidden
+    .col-3
+        .card
+            width: calc(33.3% - 6px)
+            margin-right: 9px
+            @media screen and (max-width: 750px)
+                width: 100%
+            &:last-child
+                margin-right: 0
+    .col-2
+        .card
+            width: calc(50% - 5px)
+            margin-right: 9px
+            @media screen and (max-width: 750px)
+                width: 100%
+
+            &:last-child
+                margin-right: 0
+
+@for $i from 1 to 6 
+    .card--#{$i}
+        background-image: url('../img/block-#{$i}.png')
+
+.card
+    background-repeat: no-repeat
+    background-size: cover 
+    min-height: 151px
+    -webkit-transition: all 3s
+    -o-transition: all 3s
+    transition: all 3s
+    cursor: pointer
+    @media screen and (max-width: 750px)
+        margin-bottom: 20px
+    h3
+        font-size: 24px
+        line-height: 20px
+        color: #eeeeee
+        font-weight: bold
+        margin: 0
+    p
+        display: none
+        height: 87px
+        font-size: 14px
+        line-height: 18px
+        color: #eeeeee
+        overflow: hidden
+        @media screen and (max-width: 1200px)
+            display: block
+    &__header
+        margin-bottom: 16px
+        position: relative
+        &:after
+            content: ''
+            width: 19px
+            height: 19px
+            position: absolute
+            display: inline-block
+            right: 19px
+            top: 0
+            background-image: url(../img/card-icon.png)
+            background-repeat: no-repeat
+            background-size: 19px
+            background-position: center
+            @media screen and (max-width: 1200px)
+                right: 0
+    &__layout
+        background-color: rgba(68, 136, 187, 0.75)
+        padding: 15px 24px
+        bottom: -85px
+        position: relative
+        transition: bottom .2s
+        @media screen and (max-width: 1200px)
+            bottom: 0
+            padding: 10px 10px 20px 20px
+
+    &:hover
+        .card__layout
+            bottom: 0
+        p
+            display: block
+
+.promo-block
+    background-color: #eeeeee
+    display: inline-block
+    width: 100%
+    @media screen and (max-width: 1200px)
+        padding: 0 10px
+        width: calc(100% - 20px)
+
+    &__left
+        margin-left: 20px
+        width: 503px
+        margin-right: 79px
+        float: left
+        @media screen and (max-width: 1200px) and (min-width: 951px)
+            width: calc(50% - 71px)
+            margin-right: 50px
+        @media screen and (max-width: 950px)
+            display: none
+        
+    &__right
+        float: left
+        width: calc(100% - 654px)
+        padding: 65px 0 79px
+        margin-left: 52px
+        text-align: left
+        position: relative
+        @media screen and (max-width: 1200px) and (min-width: 951px)
+            width: calc(50% - 72px)
+            margin-right: 20px
+            padding: 20px 0
+        @media screen and (max-width: 950px)
+            float: none
+            width: calc(100% - 70px)
+            margin: 0 10px 0 60px
+            padding: 15px 0
+    &__img
+        img
+            position: relative
+            top: -31px
+    &__header
+        h1
+            color: #4488bb
+            margin-bottom: 60px
+            @media screen and (max-width: 1200px)
+                margin-bottom: 40px
+
+    &__details
+        li
+            position: relative
+            margin-bottom: 10px
+            display: inline-block
+            cursor: pointer
+            @media screen and (max-width: 950px)
+                clear: both
+                float: left 
+            &:not(:last-child)
+                border-bottom: 1px dashed #aaaaaa 
+        p
+            font-size: 18px
+            line-height: 17px
+            color: #4488bb
+            font-weight: bold
+            margin-bottom: 12px
+            float: left
+
+.circle
+    position: absolute
+    left: -52px
+    display: block
+    text-align: center
+    top: calc(50% - 21px)
+    line-height: 31px
+    width: 31px
+    height: 31px
+    border-radius: 50%
+    background-color: #4488bb
+    font-size: 18px
+    color: #eeeeee
+    font-weight: bold
+    float: left
+
+footer
+    @media screen and (max-width: 1200px)
+        padding: 0 10px
+
+.disclamers
+    padding: 15px 0 15px 24px
+    margin: 20px 0
+    border-left: 6px solid #4488bb
+    position: relative
+    &__item
+        margin-bottom: 11px
+        text-align: left
+        color: #4488bb
+        position: relative
+        &:last-child
+            margin-bottom: 0
+        p
+            font-size: 25px
+            line-height: 23px
+            @media screen and (max-width: 1200px)
+                font-size: 18px
+                line-height: 18px
+            sup
+                left: -5px

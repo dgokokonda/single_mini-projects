@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div id="mainPopup" class="popup popup--some-info">
+        <div class="popup__close"></div>
+        <div class="popup__title">External link</div>
+        <div class="popup__content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eos necessitatibus amet vel tenetur doloribus in iusto eum sint, maxime eligendi deserunt architecto earum totam itaque, esse, harum debitis iure?</p>
+            <div class="popup__buttons">
+                <a href="#" class="link js-close">Cancel</a>
+                <button class="btn js-close">Accept</button>
+            </div>
+        </div>
+    </div>
+    <header class="header">
+        <div class="wrapper">
+            <div class="header__left">
+                <h1>Banner header</h1>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, atque. Voluptatum maiores incidunt, sapiente eligendi , amet consectetur adipisicing elit. In, atque. </p>
+            </div>
+            <div class="header__right">
+                <form id="regForm" class="form">
+                    <div class="form__wrapper">
+                        <h2>Request form</h2>
+                        <div class="form__line">
+                            <input id="reg-email" type="text" name="reg-email" class="inp-txt">
+                            <label for="reg-email">Enter your E-mail</label>
+                            <span class="field-marker"></span>
+                            <span class="error-tooltip">Enter correct E-mail</span>
+
+                        </div>
+                        <div class="form__line">
+                            <input id="reg-name" type="text" name="reg-name" class="inp-txt">
+                            <label for="reg-name">Enter your name</label>
+                            <span class="field-marker"></span>
+                            <span class="error-tooltip">Enter correct name</span>
+
+                        </div>
+
+                        <div class="form__line">
+                            <input id="reg-city" type="text" name="reg-city" disabled class="inp-select" value="" placeholder="Select your country">
+                            <span class="form-arrow js-dropdown"></span>
+                            <ul id="cityList" class="form__dropdown">
+                                <li class="js-city">Russia</li>
+                                <li class="js-city">Belarus</li>
+                                <li class="js-city">Germany</li>
+                            </ul>
+                        </div>
+                        <div class="form__line form__agree">
+                            <input type="checkbox" name="agree" id="agree">
+                            <label for="agree">I agree with terms & conditions</label>
+                        </div>
+                        <div class="form__buttons">
+                            <button class="btn">Submit</button>
+                            <a href="#" class="link">Hyperlink</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="cards">
+            <div class="wrapper">
+                <div class="cards__block col col-3">
+                    <div class="card card--1">
+                        <div class="card__layout">
+                            <div class="card__header">
+                                <h3>Post header 1</h3>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quo maxime, numquam recusandae error doloremque, magnam expedita et quidem, sed ad molestiae nobis quis! Laborum sequi odit fuga dolore deleniti.</p>
+                        </div>
+                    </div>
+                    <div class="card card--2">
+                        <div class="card__layout">
+                            <div class="card__header">
+                                <h3>Post header 2</h3>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quo maxime, numquam recusandae error doloremque, magnam expedita et quidem, sed ad molestiae nobis quis! Laborum sequi odit fuga dolore deleniti.</p>
+                        </div>
+                    </div>
+                    <div class="card card--3">
+                        <div class="card__layout">
+                            <div class="card__header">
+                                <h3>Post header 3</h3>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quo maxime, numquam recusandae error doloremque, magnam expedita et quidem, sed ad molestiae nobis quis! Laborum sequi odit fuga dolore deleniti.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cards__block col col-2">
+                    <div class="card card--4">
+                        <div class="card__layout">
+                            <div class="card__header">
+                                <h3>Post header 4</h3>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quo maxime, numquam recusandae error doloremque, magnam expedita et quidem, sed ad molestiae nobis quis! Laborum sequi odit fuga dolore deleniti.</p>
+                        </div>
+                    </div>
+                    <div class="card card--5">
+                        <div class="card__layout">
+                            <div class="card__header">
+                                <h3>Post header 5</h3>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quo maxime, numquam recusandae error doloremque, magnam expedita et quidem, sed ad molestiae nobis quis! Laborum sequi odit fuga dolore deleniti.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="promo-block">
+            <div class="wrapper">
+                <div class="promo-block__left">
+                    <div class="promo-block__img">
+                        <img src="img/main.png" alt="product">
+                    </div>
+                </div>
+                <div class="promo-block__right">
+                    <div class="promo-block__header">
+                        <h1>Title text</h1>
+                    </div>
+                    <ul class="promo-block__details js-list">
+                        <li>
+                            <span class="circle">1</span>
+                            <p>Lorem ipsum dolor<sup>1</sup> sit amet, consectetur adipisicing</p>
+                        </li>
+                        <li>
+                            <span class="circle">2</span>
+                            <p>Lorem ipsum dolor adipisicing elit. </p>
+                        </li>
+                        <li>
+                            <span class="circle">3</span>
+                            <p>Lorem ipsum dolor sit amet<sup>2</sup> numquam recusandae </p>
+                        </li>
+                        <li>
+                            <span class="circle">4</span>
+                            <p> adipisicing elit. Ut quo maxime, numquam </p>
+                        </li>
+                        <li>
+                            <span class="circle">5</span>
+                            <p>Lorem ipsum dolor sit<sup>3</sup> amet, quis! Laborum sequi odit fuga</p>
+                        </li>
+                        <li>
+                            <span class="circle">6</span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="wrapper">
+            <div class="disclamers">
+                <div class="disclamers__item">
+                    <p><sup>1</sup>Lorem ipsum dolor sit amet, consectetur error doloremque, sequi odit fuga dolore deleniti.</p>
+                </div>
+                <div class="disclamers__item">
+                    <p><sup>2</sup>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quo expedita et quidem, sed ad molestiae.</p>
+                </div>
+                <div class="disclamers__item">
+                    <p><sup>3</sup>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quo maxime, sequi odit fuga dolore deleniti.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
